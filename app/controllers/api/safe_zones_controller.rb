@@ -27,5 +27,14 @@ module Api
 				render json: "No safe_zone with such id was found"
 			end
 		end
+
+		def create
+			safe_zone = SafeZone.new(request.POST)
+			if safe_zone.save
+				render json: [safe_zone]
+			else
+				render json: error("safe_zone could not be created")
+			end
+		end
 	end
 end
