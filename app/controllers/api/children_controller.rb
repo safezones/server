@@ -29,7 +29,7 @@ module Api
 		end
 
 		def create
-			child = Child.new(request.POST)
+			child = Child.new(request.POST.except(:id))
 			if child.save
 				render json: [child]
 			else
