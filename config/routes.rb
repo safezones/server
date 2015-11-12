@@ -4,12 +4,13 @@ Rails.application.routes.draw do
     resources :children do
       resources :adults
       resources :zone_categories
-      resources :safe_zones
     end
     resources :adults do
       resources :children
     end
-    resources :zone_categories
+    resources :zone_categories do
+      resources :safe_zones
+    end
     resources :safe_zones
   end
   # The priority is based upon order of creation: first created -> highest priority.

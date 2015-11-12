@@ -3,7 +3,7 @@ module Api
 		def index
 			safe_zones = SafeZone.all
 			unless params[:zone_category_id].nil?
-				safe_zones = safe_zones.joins(:zone_categories).where("categories.id" => params[:zone_category_id])
+				safe_zones = safe_zones.where("zone_category_id" => params[:zone_category_id])
 			end
 			render json: safe_zones
 		end
