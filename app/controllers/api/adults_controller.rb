@@ -33,7 +33,7 @@ module Api
 			if adult.update(request.POST)
 				render json: [adult]
 			else
-				render json: error("Adult could not be created"
+				render json: error("Adult could not be created")
 			end
 		end
 
