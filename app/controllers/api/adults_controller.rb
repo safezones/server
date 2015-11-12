@@ -2,8 +2,8 @@ module Api
 	class AdultsController < ApiController
 		def index
 			adult = Adult.all
-			unless params[:children_id].nil?
-				adult = adult.joins(:children).where("children.id" => params[:children_id])
+			unless params[:child_id].nil?
+				adult = adult.joins(:children).where("children.id" => params[:child_id])
 			end
 			render json: adult
 		end
@@ -33,7 +33,7 @@ module Api
 			if adult.update(request.POST)
 				render json: [adult]
 			else
-				render json: "Adult could not be created"
+				render json: error("Adult could not be created"
 			end
 		end
 

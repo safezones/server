@@ -33,7 +33,7 @@ module Api
 			if child.save
 				render json: [child]
 			else
-				render json: "Child could not be created"
+				render json: error("Child could not be created")
 			end
 		end
 
