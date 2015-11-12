@@ -15,5 +15,17 @@ module Api
 				render json: error("Couln't find such safe zone")
 			end
 		end
+
+		def update
+			if safe_zone = SafeZone.find_by_id(params[:id])
+				if safe_zone.update_attributes(request.POST.except(:id))
+					render json: [safe_zone]
+				else
+					render json: error("Couldn't update safe_zone")
+				end
+			else
+				render json: "No safe_zone with such id was found"
+			end
+		end
 	end
 end
