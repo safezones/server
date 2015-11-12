@@ -1,5 +1,5 @@
 class ChangeCategoriesToZoneCategories < ActiveRecord::Migration
   def change
-  	rename_table "Categories", "ZoneCategories"
+  	rename_table "categories", "ZoneCategories"
   end
 end
