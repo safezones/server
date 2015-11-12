@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112151351) do
+ActiveRecord::Schema.define(version: 20151112162301) do
 
   create_table "adult_children", id: false, force: :cascade do |t|
     t.integer "adult_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20151112151351) do
     t.float    "last_lat",   default: 0.0
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "safe_zone",  default: -1
   end
 
   create_table "safe_zones", force: :cascade do |t|
