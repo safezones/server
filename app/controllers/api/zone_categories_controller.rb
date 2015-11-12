@@ -1,7 +1,7 @@
 module Api
-	class CategoriesController < ApiController
+	class ZoneCategoriesController < ApiController
 		def index
-			category = Category.all
+			category = ZoneCategory.all
 			unless params[:child_id].nil?
 				category = category.where(child_id: params[:child_id])
 			end
@@ -9,7 +9,7 @@ module Api
 		end
 
 		def create
-			category = Category.new(request.POST)
+			category = ZoneCategory.new(request.POST)
 			if category.save
 				render json: [category]
 			else
