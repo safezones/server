@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112163432) do
+ActiveRecord::Schema.define(version: 20151112175221) do
 
   create_table "adult_children", id: false, force: :cascade do |t|
     t.integer "adult_id"
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20151112163432) do
     t.float    "lat",              default: 0.0
     t.float    "lon",              default: 0.0
     t.integer  "zone_category_id"
-    t.float    "radius",           default: 0.0
+    t.float    "radius",           default: 0.186411358
     t.string   "address",          default: ""
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "zone_categories", force: :cascade do |t|
