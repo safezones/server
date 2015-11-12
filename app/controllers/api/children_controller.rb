@@ -10,8 +10,7 @@ module Api
 
 		def update
 			if child = Child.find_by_id(params[:id])
-				attributes = ActiveSupport::JSON.decode(params.except(:id))
-				if child.update_attributes(attributes)
+				if child.update_attributes(request.POST.except(:id))
 					render json: [child]
 				else
 					render json: error("Couldn't update user")
@@ -30,9 +29,8 @@ module Api
 		end
 
 		def create
-			child = Child.new
-			attributes = ActiveSupport::JSON.decode(params)
-			if child.update(attributes)
+			child = Child.new(request.POST)
+			if child.save
 				render json: [child]
 			else
 				render json: "Child could not be created"
