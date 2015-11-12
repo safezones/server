@@ -7,5 +7,14 @@ module Api
 			end
 			render json: category
 		end
+
+		def create
+			category = Category.new(request.POST)
+			if category.save
+				render json: [category]
+			else
+				render json: error("Category could not be created")
+			end
+		end
 	end
 end
