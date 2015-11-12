@@ -29,5 +29,15 @@ module Api
 			end
 		end
 
+		def create
+			child = Child.new
+			attributes = ActiveSupport::JSON.decode(params)
+			if child.update(attributes)
+				render json: [child]
+			else
+				render json: "Child could not be created"
+			end
+		end
+
 	end
 end

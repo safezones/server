@@ -28,5 +28,16 @@ module Api
 				render json: error("Couln't find such parent")
 			end
 		end
+
+		def create
+			adult = Adult.new
+			attributes = ActiveSupport::JSON.decode(params)
+			if adult.update(attributes)
+				render json: [adult]
+			else
+				render json: "Adult could not be created"
+			end
+		end
+
 	end
 end

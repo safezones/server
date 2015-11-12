@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112112535) do
+ActiveRecord::Schema.define(version: 20151112131522) do
 
   create_table "adult_children", id: false, force: :cascade do |t|
     t.integer "adult_id"
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20151112112535) do
   create_table "children", force: :cascade do |t|
     t.string   "name"
     t.string   "status"
-    t.integer  "father_id"
-    t.integer  "mother_id"
     t.float    "last_seen"
     t.float    "last_lon"
     t.float    "last_lat"
