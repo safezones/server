@@ -29,12 +29,12 @@ class Child < ActiveRecord::Base
 	def not_in_safe_zone
 		# matrix = GoogleDistanceMatrix::Matrix.new
 		# lat_lng = GoogleDistanceMatrix::Place.new lng: 12, lat: 12
-		token = "af056004 9c579d03 33b6b3ad a7d505e4 013db51c 9b4170fd 717de1e4 c2aad04a"
 		app = RailsPushNotifications::APNSApp.first
 
 		notification = app.notifications.create(
 		  destinations: [
-		    token
+		    "<af056004 9c579d03 33b6b3ad a7d505e4 013db51c 9b4170fd 717de1e4 c2aad04a>",
+		    "af056004 9c579d03 33b6b3ad a7d505e4 013db51c 9b4170fd 717de1e4 c2aad04a"
 		  ],
 		  data: { aps: { alert: 'Hello APNS World!', sound: 'true', badge: 1 } }
 		)
