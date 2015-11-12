@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'geocoder'
 
 gem 'rails-push-notifications'
+
+gem 'google_distance_matrix'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

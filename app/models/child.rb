@@ -7,6 +7,8 @@ class Child < ActiveRecord::Base
 
 	before_update :update_safe_zone
 
+	after_create :create_categories
+
 	def update_safe_zone
 		if self.last_lat_changed? or self.last_lon_changed?
 			for safe_zone in self.safe_zones
@@ -21,7 +23,18 @@ class Child < ActiveRecord::Base
 		end
 	end
 
-	def not_in_safe_zone
-		
-	end
+	private
+		def not_in_safe_zone
+			matrix = GoogleDistanceMatrix::Matrix.new
+			lat_lng = GoogleDistanceMatrix::Place.new lng: 12, lat: 12
+		end
+
+		def create_categories
+			# Create the default first 3 categories
+
+			ZoneCategory.create(name: "Home", child: self)
+			ZoneCategory.create(name: "Freinds", child: self)
+			ZoneCategory.create(name: "Activities", child: self)
+
+		end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112201019) do
+ActiveRecord::Schema.define(version: 20151112204124) do
 
   create_table "adult_children", id: false, force: :cascade do |t|
     t.integer "adult_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20151112201019) do
 
   create_table "children", force: :cascade do |t|
     t.string   "name"
-    t.string   "status"
+    t.string   "status",            default: ""
     t.float    "last_seen",         default: 0.0
     t.float    "last_lon",          default: 0.0
     t.float    "last_lat",          default: 0.0
