@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112175221) do
+ActiveRecord::Schema.define(version: 20151112183157) do
 
   create_table "adult_children", id: false, force: :cascade do |t|
     t.integer "adult_id"
@@ -20,22 +20,59 @@ ActiveRecord::Schema.define(version: 20151112175221) do
   end
 
   create_table "adults", force: :cascade do |t|
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "phone_number", default: ""
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "phone_number",      default: ""
+    t.string   "destination_token", default: ""
   end
 
   create_table "children", force: :cascade do |t|
     t.string   "name"
     t.string   "status"
-    t.float    "last_seen",    default: 0.0
-    t.float    "last_lon",     default: 0.0
-    t.float    "last_lat",     default: 0.0
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "safe_zone",    default: -1
-    t.string   "phone_number", default: ""
+    t.float    "last_seen",         default: 0.0
+    t.float    "last_lon",          default: 0.0
+    t.float    "last_lat",          default: 0.0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "safe_zone",         default: -1
+    t.string   "phone_number",      default: ""
+    t.string   "destination_token", default: ""
   end
+
+  create_table "rails_push_notifications_apns_apps", force: :cascade do |t|
+    t.text     "apns_dev_cert"
+    t.text     "apns_prod_cert"
+    t.boolean  "sandbox_mode"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "rails_push_notifications_gcm_apps", force: :cascade do |t|
+    t.string   "gcm_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rails_push_notifications_mpns_apps", force: :cascade do |t|
+    t.text     "cert"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rails_push_notifications_notifications", force: :cascade do |t|
+    t.text     "destinations"
+    t.integer  "app_id"
+    t.string   "app_type"
+    t.text     "data"
+    t.text     "results"
+    t.integer  "success"
+    t.integer  "failed"
+    t.boolean  "sent",         default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "rails_push_notifications_notifications", ["app_id", "app_type", "sent"], name: "app_and_sent_index_on_rails_push_notifications"
 
   create_table "safe_zones", force: :cascade do |t|
     t.float    "lat",              default: 0.0

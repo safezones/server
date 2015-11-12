@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :children do
       resources :adults
       resources :zone_categories
+      resources :safe_zones
     end
     resources :adults do
       resources :children

@@ -5,6 +5,11 @@ module Api
 			unless params[:zone_category_id].nil?
 				safe_zones = safe_zones.where("zone_category_id" => params[:zone_category_id])
 			end
+
+			unless params[:child_id].nil?
+				safe_zones = safe_zones.joins(:zone_category).where("zone_categories.id" => params[:child_id])
+			end
+
 			render json: safe_zones
 		end
 

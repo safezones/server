@@ -16,7 +16,12 @@ class Child < ActiveRecord::Base
 				end
 			end
 
+			self.not_in_safe_zone
 			update_column :safe_zone, -1
 		end
+	end
+
+	def not_in_safe_zone
+		
 	end
 end
