@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112204124) do
+ActiveRecord::Schema.define(version: 20151112222148) do
 
   create_table "adult_children", id: false, force: :cascade do |t|
     t.integer "adult_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20151112204124) do
     t.integer  "safe_zone",         default: -1
     t.string   "phone_number",      default: ""
     t.string   "destination_token", default: ""
+    t.string   "last_address"
   end
 
   create_table "rails_push_notifications_apns_apps", force: :cascade do |t|
