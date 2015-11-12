@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  namespace :api do
+    resources :children do
+      resources :adults
+    end
+    resources :adults do
+      resources :children
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
