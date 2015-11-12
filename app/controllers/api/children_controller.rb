@@ -1,4 +1,4 @@
-module API
+module Api
 	class ChildrenController < ApiController
 		def index
 			children = Child.all
