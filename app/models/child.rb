@@ -1,4 +1,5 @@
 class Child < ActiveRecord::Base
+
 	has_many :adults, through: :adult_children
 	has_many :adult_children
 
@@ -27,20 +28,24 @@ class Child < ActiveRecord::Base
 	end
 
 	def not_in_safe_zone
-		# matrix = GoogleDistanceMatrix::Matrix.new
-		# lat_lng = GoogleDistanceMatrix::Place.new lng: 12, lat: 12
-		app = RailsPushNotifications::APNSApp.first
 
-		notification = app.notifications.create(
-		  destinations: [
-		    "<af056004 9c579d03 33b6b3ad a7d505e4 013db51c 9b4170fd 717de1e4 c2aad04a>",
-		    "af056004 9c579d03 33b6b3ad a7d505e4 013db51c 9b4170fd 717de1e4 c2aad04a"
-		  ],
-		  data: { aps: { alert: 'Hello APNS World!', sound: 'true', badge: 1 } }
+		pusher = Grocer.pusher(
+		  certificate: "config/IOS_key.pem",      # required
+		  passphrase:  "1234",                       # optional
+		  gateway:     "gateway.push.apple.com", # optional; See note below.
+		  port:        2195,                     # optional
+		  retries:     3                         # optional
 		)
 
-		app.push_notifications
+		for adult in self.adults
+			notification = Grocer::Notification.new(
+			  device_token:      adult.destination_token,
+			  alert:             self.name + " is not in a safe zone!",
+			  badge:             1
+			)
 
+			pusher.push(notification) # return value is the number of bytes sent successfully
+		end
 	end
 
 	def create_categories

@@ -25,6 +25,8 @@ gem 'geocoder'
 
 gem 'rails-push-notifications'
 
+gem 'grocer'
+
 gem 'google_distance_matrix'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
