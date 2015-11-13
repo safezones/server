@@ -42,7 +42,7 @@ class Child < ActiveRecord::Base
 			  device_token:      adult.destination_token,
 			  alert:             self.name + " is not in a safe zone!",
 			  badge:             1,
-		      custom: {"child_id": self.id}
+		      custom: 			{ "child_id" => self.id}
 			)
 
 			pusher.push(notification) # return value is the number of bytes sent successfully
