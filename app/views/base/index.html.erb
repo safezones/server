@@ -1,0 +1,10 @@
+<%= form_tag("/base/update", method: "patch") do %>
+	id:
+  <%= number_field_tag(:child_id) %>
+  <br>lat:
+  <%= text_field_tag(:lat) %>
+  <br>
+  lon:
+  <%= text_field_tag(:lon) %>
+  <%= submit_tag("Update") %>
+<% end %>

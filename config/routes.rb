@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'base/index'
+
+  resources :base
+  
   namespace :api do
     resources :children do
       resources :adults
