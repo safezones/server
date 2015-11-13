@@ -35,10 +35,17 @@ module Api
 
 		def create
 			safe_zone = SafeZone.new(request.POST.compact)
-			if safe_zone.save
-				render json: [safe_zone]
+			if safe_zone.zone_category.nil?
+				render json: error("zone category not sent!")
 			else
-				render json: error("safe_zone could not be created")
+				
+				safe_zone.lat, safe_zone.lon = safe_zone.zone_category.child.last_lat, safe_zone.zone_category.child.last_lon
+
+				if safe_zone.save
+					render json: [safe_zone]
+				else
+					render json: error(safe_zone.errors.full_messages.join(", "))
+				end
 			end
 		end
 	end
