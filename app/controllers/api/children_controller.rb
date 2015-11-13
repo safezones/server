@@ -10,7 +10,7 @@ module Api
 
 		def update
 			if child = Child.find_by_id(params[:id])
-				if child.update_attributes(request.POST.except(:id))
+				if child.update_attributes(request.POST.except(:id).compact)
 					render json: [child]
 				else
 					render json: error("Couldn't update user")
@@ -29,7 +29,7 @@ module Api
 		end
 
 		def create
-			child = Child.new(request.POST)
+			child = Child.new(request.POST.compact)
 			if child.save
 				render json: [child]
 			else

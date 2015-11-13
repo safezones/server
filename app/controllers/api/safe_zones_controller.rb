@@ -23,7 +23,7 @@ module Api
 
 		def update
 			if safe_zone = SafeZone.find_by_id(params[:id])
-				if safe_zone.update_attributes(request.POST.except(:id))
+				if safe_zone.update_attributes(request.POST.except(:id).compact)
 					render json: [safe_zone]
 				else
 					render json: error("Couldn't update safe_zone")
@@ -34,7 +34,7 @@ module Api
 		end
 
 		def create
-			safe_zone = SafeZone.new(request.POST)
+			safe_zone = SafeZone.new(request.POST.compact)
 			if safe_zone.save
 				render json: [safe_zone]
 			else

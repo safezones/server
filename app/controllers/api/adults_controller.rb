@@ -10,7 +10,7 @@ module Api
 
 		def update
 			if adult = Adult.find_by_id(params[:id])
-				if parent.update_attributes(request.POST.except(:id))
+				if parent.update_attributes(request.POST.except(:id).compact)
 					render json: [adult]
 				else
 					render json: error("Couldn't update parent")
@@ -30,7 +30,7 @@ module Api
 
 		def create
 			adult = Adult.new
-			if adult.update(request.POST)
+			if adult.update(request.POST.compact)
 				render json: [adult]
 			else
 				render json: error("Adult could not be created")

@@ -9,7 +9,7 @@ module Api
 		end
 
 		def create
-			category = ZoneCategory.new(request.POST)
+			category = ZoneCategory.new(request.POST.compact)
 			if category.save
 				render json: [category]
 			else
@@ -30,7 +30,7 @@ module Api
 		end
 
 		def create
-			category = ZoneCategory.new(request.POST)
+			category = ZoneCategory.new(request.POST.compact)
 			if category.save
 				render json: [category]
 			else
